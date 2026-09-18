@@ -17,6 +17,9 @@ Der Prüfschritt kostet einen Bruchteil des Erzeugens. Genau deshalb kann er bei
 Durchlauf mitlaufen, statt eingespart zu werden — die Bilanz am Ende jedes Laufs zeigt
 das Verhältnis.
 
+Was der Bau darüber hinaus gezeigt hat — zur Bauform, zum Verhalten der Verteilung und zu
+einer Lücke, die jeder Regelkreis dieser Art hat — steht in [ERKENNTNISSE.md](ERKENNTNISSE.md).
+
 ## Was die Oberfläche zeigt
 
 Jeder Schritt wird als eigene Karte mitgeschrieben, farblich getrennt nach Modell.
