@@ -146,4 +146,8 @@ def rewrite(
         "input_tokens": input_tokens,
         "output_tokens": output_tokens,
         "cost_usd": _cost(model, input_tokens, output_tokens),
+        # Über die CLI sind die Eingabe-Token aus der Promptlänge geschätzt, nicht
+        # gemessen. Die Oberfläche kennzeichnet das, weil die Zahl als
+        # Vergleichsgröße gegen die gemessenen Jev-Kosten steht.
+        "tokens_estimated": backend == "cli",
     }

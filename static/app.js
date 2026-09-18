@@ -163,12 +163,14 @@ function onRewrite(event) {
     el("span", "round", `Umschreibung ${event.iteration}`),
   );
 
+  const approx = event.tokens_estimated ? "≈" : "";
   card.append(head, el("p", "passage", event.text), meta([
     ["Modell", event.model_label],
     ["Latenz", `${(event.latency_ms / 1000).toFixed(1)} s`],
-    ["Token", `${event.input_tokens} ein / ${event.output_tokens} aus`],
-    ["Kosten", money(event.cost_usd)],
+    ["Token", `${approx}${event.input_tokens} ein / ${event.output_tokens} aus`],
+    ["Kosten", `${approx}${money(event.cost_usd)}`],
   ]));
+  if (event.tokens_estimated) ledger.llmEstimated = true;
 
   $("timeline").append(card);
   scroll(card);
@@ -255,13 +257,17 @@ function renderSummary() {
 
   if (factor > 1) {
     box.append(el("p", "note",
-      `Das Erzeugen kostet in diesem Durchlauf das ${factor.toFixed(0)}-Fache des Prüfens. ` +
+      `Das Erzeugen kostet in diesem Durchlauf rund das ${factor.toFixed(0)}-Fache des Prüfens. ` +
       `Genau deshalb kann der Prüfschritt bei jedem Durchlauf mitlaufen, statt gespart zu werden.`));
   }
   box.append(el("p", "note",
-    "Die Kosten des Sprachmodells sind aus Aufgaben-Token zu Listenpreisen gerechnet. Läuft es über " +
-    "die lokale CLI, bleibt deren eigener Systemprompt bewusst außen vor — er gehört zum Werkzeug, " +
-    "nicht zur Aufgabe."));
+    ledger.llmEstimated
+      ? "Die Kosten des Entscheidungsmodells stammen aus der gemeldeten Token-Zahl. Die des " +
+        "Sprachmodells sind geschätzt (mit ≈ markiert): Die lokale CLI verbucht den Prompt in " +
+        "ihren Cache-Feldern zusammen mit dem eigenen Systemprompt, der nicht zur Aufgabe gehört. " +
+        "Gerechnet wird deshalb aus der Promptlänge zu Listenpreisen. Mit ANTHROPIC_API_KEY sind " +
+        "auch diese Zahlen gemessen."
+      : "Beide Seiten aus den gemeldeten Token-Zahlen zu Listenpreisen gerechnet."));
   box.hidden = false;
 }
 

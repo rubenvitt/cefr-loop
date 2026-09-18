@@ -55,7 +55,8 @@ Dann `http://localhost:8420` öffnen.
 **Sprachmodell-Zugang:** Ist `ANTHROPIC_API_KEY` gesetzt, geht der Umschreibeschritt direkt
 an die Messages-API. Sonst läuft er über die lokale `claude`-CLI im Headless-Modus. Die CLI
 bringt ihren eigenen Systemprompt mit, deshalb sind ihre Kostenangaben für einen Vergleich
-unbrauchbar; gerechnet wird auf beiden Wegen aus den reinen Aufgaben-Token zu Listenpreisen.
+unbrauchbar. Auf diesem Weg wird aus der Promptlänge geschätzt und in der Oberfläche mit ≈
+markiert; mit `ANTHROPIC_API_KEY` sind beide Seiten der Bilanz gemessen.
 
 ## Aufbau
 
