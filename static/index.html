@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CEFR-Loop</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Sprachniveau als Kreislauf</h1>
+    <p class="lede">
+      Zwei Modelle, drei Aufgaben. Das <b class="t-jev">Entscheidungsmodell</b> misst, wie schwer
+      ein Absatz zu lesen ist. Das <b class="t-llm">Sprachmodell</b> schreibt ihn um.
+      Das Entscheidungsmodell prüft nach, was dabei herauskam.
+    </p>
+    <div class="status" id="status"></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="panel">
+    <div class="samples" id="samples"></div>
+    <textarea id="text" rows="6" spellcheck="false"
+              placeholder="Absatz einfügen oder ein Beispiel oben wählen …"></textarea>
+
+    <div class="controls">
+      <label class="ctl">
+        <span>Zielniveau</span>
+        <div class="segments" id="target"></div>
+      </label>
+      <label class="ctl">
+        <span>Sprachmodell</span>
+        <select id="model"></select>
+      </label>
+      <label class="ctl">
+        <span>Max. Umschreibungen</span>
+        <select id="max">
+          <option>1</option><option>2</option><option selected>3</option><option>4</option>
+        </select>
+      </label>
+      <button id="run">Kreislauf starten</button>
+    </div>
+  </section>
+
+  <section id="timeline" class="timeline"></section>
+
+  <section id="summary" class="summary" hidden></section>
+
+  <details class="rubric">
+    <summary>Die Rubrik, die das Entscheidungsmodell bekommt</summary>
+    <p class="rubric-note" id="rubric-instructions"></p>
+    <ol id="rubric-levels"></ol>
+    <p class="rubric-note">
+      Sechs Stufen, an denen sich auch Menschen streiten — genau die Konstellation, in der eine
+      hohe Confidence am wenigsten wert ist. Deshalb steht in jeder Karte die vollständige
+      Verteilung und nicht nur die Gewinnerstufe.
+    </p>
+  </details>
+
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
